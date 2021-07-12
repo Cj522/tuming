@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            background:url(./s.jpg);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .chatbox {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+            opacity: 0.8;
+        }
+
+        .messages {
+            height: 350px;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ccc;
+            overflow: scroll;
+        }
+
+        .messages h5 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .messages p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .self {
+            text-align: right;
+        }
+
+        .other {
+            text-align: left;
+        }
+
+        .form {
+            height: 150px;
+        }
+
+        .form .input {
+            height: 110px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .form .btn {
+            height: 40px;
+            box-sizing: border-box;
+            border-top: 1px solid #ccc;
+        }
+
+        .form textarea {
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: none;
+            resize: none;
+            outline: none;
+            font-size: 20px;
+        }
+
+        .form input {
+            display: block;
+            width: 100px;
+            height: 30px;
+            margin-top: 5px;
+            margin-right: 20px;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>骚逼</h3>
+    <div class="chatbox">
+        <!-- 聊天内容 -->
+        <div class="messages">
+            <!-- <div class="self">
+            <h5>我说</h5>
+            <p>你好</p>
+            </div>
+            <div class="other">
+            <h5>对方说</h5>
+            <p>你好</p>
+            </div> -->
+        </div>
+        <div class="form">
+            <div class="input">
+                <textarea></textarea>
+            </div>
+            <div class="btn">
+                <input type="button" value="发送" id="btn" />
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+<script>
+    const btn = document.querySelector('#btn')
+    const textarea = document.querySelector('textarea')
+    const messages = document.querySelector('.messages')
+
+    btn.onclick = function () {
+
+        const value = textarea.value.trim()
+        if (!value) {
+            return
+        }
+
+        const str = `<div class="self">
+            <h5>主子</h5>
+            <p>${value}</p>
+            </div>`
+
+        messages.innerHTML += str
+
+        textarea.value = ''
+
+        fn()
+
+        // const xhr = new XMLHttpRequest()
+
+        // xhr.open('post', 'http://www.tuling123.com/openapi/api')
+
+        // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+
+        // xhr.send(`key=2baed7b69598431b8fc4ee9425522de6&info=${value}&userid=335220`)
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 4) {
+        //         if (xhr.status === 200) {
+        //             console.log(xhr.responseText);
+        //             const result = JSON.parse(xhr.responseText)
+        //             if (result.code === 100000) {
+        //                 const str = `<div class="other">
+        //                                 <h5>骚逼</h5>
+        //                                 <p>${result.text}</p>
+        //                             </div>`
+        //                 messages.innerHTML += str
+
+        //             }
+        //             if(result.code ===200000){
+        //                 // console.log(xhr.responseText);
+        //                 const result = JSON.parse(xhr.responseText)
+        //                 const str = `<div class="other">
+        //                                 <h5>骚逼</h5>
+        //                                 <a href = '${result.url}'>${result.text}</a>
+        //                             </div>`
+        //                 messages.innerHTML += str
+                        
+        //             }
+        //             if(result.code === 300000){
+
+        //             }
+        //             if(result.code ===  40004){
+        //                 const result = JSON.parse(xhr.responseText)
+        //                 const str = `<div class="other">
+        //                                 <h5>骚逼</h5>
+        //                                 <p>对不起主人，我去卖身赚钱了</p>
+        //                             </div>`
+        //                 messages.innerHTML += str
+        //             }
+
+        //             const last = messages.lastElementChild
+        //             last.scrollIntoView()
+        //         }
+
+        //     }
+        // }
+
+    }
+    textarea.onkeyup = function(e){
+        // console.log(e.keyCode);
+        const value = textarea.value.trim()
+        if(e.keyCode === 13){
+            const str = `<div class="self">
+            <h5>我说</h5>
+            <p>${value}</p>
+            </div>`
+
+        messages.innerHTML += str
+
+        textarea.value = ''
+        fn()
+        }
+    }
+</script>
+
+</html>
